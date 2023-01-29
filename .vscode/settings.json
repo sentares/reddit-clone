@@ -1,0 +1,122 @@
+{
+    //Window
+    "window.zoomLevel": 0,
+    "window.openFilesInNewWindow": "off",
+  
+    //Main editor settings
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on",
+    "editor.folding": false,
+    "editor.insertSpaces": false,
+    "editor.smoothScrolling": true,
+    "editor.minimap.enabled": false,
+    "editor.detectIndentation": true,
+    "editor.suggestSelection": "first",
+    //Определяет, будет ли редактор прокручиваться за пределы последней строки.
+    "editor.scrollBeyondLastLine": true,
+    "editor.snippetSuggestions": "bottom",
+    "editor.multiCursorModifier": "ctrlCmd",
+    //Определяет, должен ли редактор отображать управляющие символы.
+    "editor.renderControlCharacters": false,
+    //Управляет выделением символов, которые можно спутать с основными символами ASCII, кроме тех, которые являются общими для текущего пользовательского языкового стандарта.
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+  
+    //Appearance
+    "editor.cursorBlinking": "expand",
+    "editor.bracketPairColorization.enabled": false,
+    "editor.glyphMargin": false,
+  
+    //Font
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    // "editor.fontFamily": "Pragmata Pro",
+    "editor.fontFamily": "JetBrains Mono, IBM Plex Mono, monospace",
+  
+    //Explorer
+    "explorer.confirmDelete": false,
+    "explorer.compactFolders": false,
+    "explorer.confirmDragAndDrop": false,
+  
+    //Emmet
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.showExpandedAbbreviation": "never",
+  
+    //Workbench
+    "workbench.colorTheme": "Omni",
+    //Разрешить уменьшение размера вкладок, когда доступного места недостаточно для отображения всех вкладок одновременно.
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.iconTheme": "helium-icon-theme",
+    "workbench.startupEditor": "newUntitledFile",
+  
+    //Debug
+    "debug.toolBarLocation": "hidden",
+    "debug.focusWindowOnBreak": false,
+    "debug.showInlineBreakpointCandidates": false,
+    "debug.showBreakpointsInOverviewRuler": false,
+  
+    //Format
+    "prettier.semi": false,
+    "prettier.useTabs": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    //Включите круглые скобки вокруг единственного параметра функции стрелки
+    "prettier.arrowParens": "avoid",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[php]": {
+      "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
+  
+    //Terminal
+    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.tabs.enabled": false,
+  
+    //Other
+    //Зафиксируйте все изменения, когда нет поэтапных изменений.
+    "git.enableSmartCommit": true,
+    "files.defaultLanguage": "plaintext",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "html.completion.attributeDefaultValue": "singlequotes",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  
+    //Breadcrumbs
+    "breadcrumbs.icons": false,
+    "breadcrumbs.showKeys": false,
+    "breadcrumbs.showFiles": false,
+    "breadcrumbs.symbolPath": "off",
+    "breadcrumbs.showArrays": false,
+    "breadcrumbs.showEvents": false,
+    "breadcrumbs.showFields": false,
+    "breadcrumbs.showClasses": false,
+    "breadcrumbs.showMethods": false,
+    "breadcrumbs.showBooleans": false,
+    "breadcrumbs.showFunctions": false,
+    "breadcrumbs.showConstants": false,
+    "breadcrumbs.showEnumMembers": false,
+    "breadcrumbs.showConstructors": false,
+  
+    //JS & TS
+    "javascript.suggestionActions.enabled": false,
+    "typescript.suggestionActions.enabled": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+  
+    //Spell checker
+    "cSpell.language": "en,ru",
+    "cSpell.userWords": [],
+    "cSpell.enabled": true,
+    "cSpell.enableFiletypes": ["blade", "jsx", "sass", "vue"],
+  
+    "editor.unicodeHighlight.allowedCharacters": {
+      "а": true,
+      "с": true,
+      "Т": true,
+      "б": true,
+      "е": true
+    }
+  }
+  
+  
