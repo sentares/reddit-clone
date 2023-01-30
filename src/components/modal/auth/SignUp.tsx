@@ -1,29 +1,35 @@
 import { authModalState } from '@/src/atoms/authModalAtoms'
 import { auth } from '@/src/firebase/clientApp'
-import { FIREBASE_ERRORS } from '@/src/firebase/errors'
-import { border, Button, Flex, Input, Text } from '@chakra-ui/react'
+import { Button, Flex, Input, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { useSetRecoilState } from 'recoil'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { FIREBASE_ERRORS } from '@/src/firebase/errors'
 
-type LoginProps = {}
-
-const Login: React.FC<LoginProps> = () => {
+const SignUp: React.FC = () => {
 	const setAuthModalState = useSetRecoilState(authModalState)
-	const [loginForm, setLoginForm] = useState({
+	const [signUpForm, setSignUpForm] = useState({
 		email: '',
 		password: '',
+		confirmPassword: '',
 	})
-	const [signInWithEmailAndPassword, user, loading, error] =
-		useSignInWithEmailAndPassword(auth)
+
+	const [error, setError] = useState('')
+	const [createUserWithEmailAndPassword, user, loading, userError] =
+		useCreateUserWithEmailAndPassword(auth)
 
 	const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		signInWithEmailAndPassword(loginForm.email, loginForm.password)
+		if (error) setError('')
+		if (signUpForm.password !== signUpForm.confirmPassword) {
+			setError('Password do not match')
+			return
+		}
+		createUserWithEmailAndPassword(signUpForm.email, signUpForm.password)
 	}
 
 	const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setLoginForm(prev => ({
+		setSignUpForm(prev => ({
 			...prev,
 			[event.target.name]: event.target.value,
 		}))
@@ -75,9 +81,34 @@ const Login: React.FC<LoginProps> = () => {
 				}}
 				bg='gray.50'
 			/>
-			<Text textAlign='center' color='red' fontSize='10pt'>
-				{FIREBASE_ERRORS[error?.message as keyof typeof FIREBASE_ERRORS]}
-			</Text>
+			<Input
+				required
+				name='confirmPassword'
+				placeholder='confirmPassword'
+				type='password'
+				mb={2}
+				onChange={onChange}
+				fontSize='10pt'
+				_placeholder={{ color: 'gray.500' }}
+				_hover={{
+					bg: 'white',
+					border: '1px soolid',
+					borderColor: 'blue.500',
+				}}
+				_focus={{
+					outline: 'none',
+					bg: 'white',
+					border: '1px solid',
+					borderColor: 'blue.500',
+				}}
+				bg='gray.50'
+			/>
+			{(error || userError) && (
+				<Text textAlign='center' color='red' fontSize='10pt'>
+					{error ||
+						FIREBASE_ERRORS[userError?.message as keyof typeof FIREBASE_ERRORS]}
+				</Text>
+			)}
 			<Button
 				width='100%'
 				height='36px'
@@ -86,29 +117,10 @@ const Login: React.FC<LoginProps> = () => {
 				type='submit'
 				isLoading={loading}
 			>
-				Log In
+				Sign Up
 			</Button>
-			<Flex justifyContent='center' mb={2}>
-				<Text fontSize='9pt' mr={1}>
-					Forgot your password?
-				</Text>
-				<Text
-					fontSize='9pt'
-					color='blue.500'
-					cursor='pointer'
-					onClick={() =>
-						setAuthModalState(prev => ({
-							...prev,
-							view: 'resetPassword',
-						}))
-					}
-					// onClick={() => toggleView('resetPassword')}
-				>
-					Reset
-				</Text>
-			</Flex>
 			<Flex fontSize='9pt' justifyContent='center'>
-				<Text mr={1}>New here?</Text>
+				<Text mr={1}>Already a redditor?</Text>
 				<Text
 					color='blue.500'
 					fontWeight={700}
@@ -116,14 +128,14 @@ const Login: React.FC<LoginProps> = () => {
 					onClick={() =>
 						setAuthModalState(prev => ({
 							...prev,
-							view: 'signup',
+							view: 'login',
 						}))
 					}
 				>
-					SIGN UP
+					LOG IN
 				</Text>
 			</Flex>
 		</form>
 	)
 }
-export default Login
+export default SignUp
