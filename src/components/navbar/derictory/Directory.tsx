@@ -20,6 +20,7 @@ import { signOut, User } from 'firebase/auth'
 import { auth } from '@/src/firebase/clientApp'
 import { authModalState } from '@/src/atoms/authModalAtoms'
 import { TiHome } from 'react-icons/ti'
+import Communites from './Communites'
 
 const Directory: React.FC = ({}) => {
 	const setAuthModalState = useSetRecoilState(authModalState)
@@ -54,7 +55,9 @@ const Directory: React.FC = ({}) => {
 					<ChevronDownIcon color='gray.500' />
 				</Flex>
 			</MenuButton>
-			<MenuList></MenuList>
+			<MenuList>
+				<Communites />
+			</MenuList>
 		</Menu>
 	)
 }
