@@ -45,7 +45,7 @@
 	"workbench.colorTheme": "Dracula",
 	//Разрешить уменьшение размера вкладок, когда доступного места недостаточно для отображения всех вкладок одновременно.
 	"workbench.editor.tabSizing": "shrink",
-	"workbench.iconTheme": "helium-icon-theme",
+	"workbench.iconTheme": "eq-material-theme-icons-light",
 	"workbench.startupEditor": "newUntitledFile",
 
 	//Debug
