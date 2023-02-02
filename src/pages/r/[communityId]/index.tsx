@@ -3,10 +3,12 @@ import CreatePostLink from '@/src/components/community/CreatePostLink'
 import Header from '@/src/components/community/Header'
 import NotFound from '@/src/components/community/NotFound'
 import PageContent from '@/src/components/layout/PageContent'
-import { firestore } from '@/src/firebase/clientApp'
+import Posts from '@/src/components/posts/Posts'
+import { auth, firestore } from '@/src/firebase/clientApp'
 import { doc, getDoc } from 'firebase/firestore'
 import { GetServerSidePropsContext } from 'next'
 import React from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import safeJsonStringify from 'safe-json-stringify'
 
 type CommunityPageProps = {
@@ -24,6 +26,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ communityData }) => {
 			<PageContent>
 				<>
 					<CreatePostLink />
+					<Posts communityData={communityData} />
 				</>
 				<>
 					<div>RHS</div>

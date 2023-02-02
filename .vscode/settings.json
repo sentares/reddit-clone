@@ -1,6 +1,6 @@
 {
 	//Window
-	"window.zoomLevel": 0,
+	"window.zoomLevel": -1,
 	"window.openFilesInNewWindow": "off",
 
 	//Main editor settings
