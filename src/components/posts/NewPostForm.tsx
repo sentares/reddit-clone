@@ -82,7 +82,6 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
 	const handleCreatePost = async () => {
 		const { communityId } = router.query
 		const newPost: Post = {
-			id: '',
 			communityId: communityId as string,
 			creatorId: user?.uid,
 			creatorDisplayName: user.email!.split('@')[0],
@@ -105,13 +104,12 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
 					imageURL: downloadURL,
 				})
 			}
+			router.back()
 		} catch (error: any) {
 			console.log('handleCreatePost error', error.message)
 			setError(true)
 		}
 		setLoading(false)
-
-		// router.back()
 	}
 
 	const onSelectImage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,6 +143,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
 			<Flex width='100%'>
 				{formTabs.map(item => (
 					<TabItem
+						key={item.title}
 						item={item}
 						selected={item.title === selectedTab}
 						setSelectedTab={setSelectedTab}
@@ -165,12 +164,11 @@ const NewPostForm: React.FC<NewPostFormProps> = ({ user }) => {
 						selectedFile={selectedFile}
 						setSelectedFile={setSelectedFile}
 						setSelectedTab={setSelectedTab}
-						// selectFileRef = {selectedFileRef}
 						onSelectImage={onSelectImage}
 					/>
 				)}
 			</Flex>
-			{true && (
+			{error && (
 				<Alert status='error'>
 					<AlertIcon />
 					<Text mr={2}>Error creating post</Text>
