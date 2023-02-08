@@ -1,5 +1,6 @@
 import { authModalState } from '@/src/atoms/authModalAtoms'
 import { auth } from '@/src/firebase/clientApp'
+import useDirectory from '@/src/hooks/useDirectory'
 import { Flex, Icon, Input } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -9,12 +10,11 @@ import { FaReddit } from 'react-icons/fa'
 import { IoImageOutline } from 'react-icons/io5'
 import { useSetRecoilState } from 'recoil'
 
-type CreatePostProps = {}
-
-const CreatePostLink: React.FC<CreatePostProps> = () => {
+const CreatePostLink: React.FC = () => {
 	const router = useRouter()
 	const [user] = useAuthState(auth)
 	const setAuthModalState = useSetRecoilState(authModalState)
+	const { toggleMenuOpen } = useDirectory()
 
 	const onClick = () => {
 		if (!user) {
@@ -22,7 +22,11 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
 			return
 		}
 		const { communityId } = router.query
-		router.push(`/r/${communityId}/submit`)
+		if (communityId) {
+			router.push(`/r/${communityId}/submit`)
+			return
+		}
+		toggleMenuOpen()
 	}
 	return (
 		<Flex

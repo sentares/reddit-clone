@@ -50,7 +50,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
 							{moment(new Date(comment.createdAt?.seconds * 1000)).fromNow()}
 						</Text>
 					)}
-					{false && <Spinner size='sm' />}
+					{loadingDelete && <Spinner size='sm' />}
 				</Stack>
 				<Text fontSize='10pt'>{comment.text}</Text>
 				<Stack

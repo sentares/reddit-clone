@@ -3,6 +3,7 @@ import {
 	Box,
 	Flex,
 	Icon,
+	Image,
 	Menu,
 	MenuButton,
 	MenuDivider,
@@ -21,12 +22,13 @@ import { auth } from '@/src/firebase/clientApp'
 import { authModalState } from '@/src/atoms/authModalAtoms'
 import { TiHome } from 'react-icons/ti'
 import Communites from './Communites'
+import useDirectory from '@/src/hooks/useDirectory'
 
 const Directory: React.FC = ({}) => {
-	const setAuthModalState = useSetRecoilState(authModalState)
+	const { directoryState, toggleMenuOpen } = useDirectory()
 
 	return (
-		<Menu>
+		<Menu isOpen={directoryState.isOpen}>
 			<MenuButton
 				cursor='pointer'
 				padding='0px 6px'
@@ -34,6 +36,7 @@ const Directory: React.FC = ({}) => {
 				_hover={{ outline: '1px solid', outlineColor: 'gray.200' }}
 				mr={2}
 				ml={{ base: 0, md: 2 }}
+				onClick={toggleMenuOpen}
 			>
 				<Flex
 					alignItems='center'
@@ -41,14 +44,28 @@ const Directory: React.FC = ({}) => {
 					width={{ base: 'auto', lg: '200px' }}
 				>
 					<Flex alignItems='center'>
-						<Icon fontSize={24} mr={{ base: 1, md: 2 }} as={TiHome} />
+						{directoryState.selectedMenuItem.imageURL ? (
+							<Image
+								src={directoryState.selectedMenuItem.imageURL}
+								borderRadius='full'
+								boxSize='24px'
+								mr={2}
+							/>
+						) : (
+							<Icon
+								fontSize={24}
+								mr={{ base: 1, md: 2 }}
+								as={directoryState.selectedMenuItem.icon}
+								color={directoryState.selectedMenuItem.iconColor}
+							/>
+						)}
 						<Box
 							display={{ base: 'none', lg: 'flex' }}
 							flexDirection='column'
 							fontSize='10pt'
 						>
 							<Text fontWeight={600} fontSize='10pt'>
-								Home
+								{directoryState.selectedMenuItem.displayText}
 							</Text>
 						</Box>
 					</Flex>
